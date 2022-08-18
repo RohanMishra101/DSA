@@ -1,0 +1,13 @@
+Step1: Create a function heapify() to heapify the elements in the Binary Tree if any changes are made.
+
+Step2: Find the largest among root, left child, and right child, then recursively call the same function until the root element matches the largest element.
+
+Step3: Create a function insert() to insert an element into the tree, which takes an array and the number which is to be inserted as input.
+
+Step 4: If the size of the array is zero, then this number will be the root, else append the number and call the heapify function recursively to heapify the elements.
+
+Step5: Create a function deleteNode() that deletes the selected element from the tree
+
+Step 6: Delete the element and again heapify the elements recursively.
+
+Step 7: Insert elements into an empty array using the insert() function then try deleting an element from the tree.
