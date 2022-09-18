@@ -1,27 +1,15 @@
-#include<stdio.h>
-#include<conio.h>
-
-int main()
-{
-	int a[20],n,i,j,temp;
-	printf("Enter the size of array: ");
-	scanf("%d",&n);
-	printf("Enter elements of array: \n");
-	for(i=0;i<n;i++){
-		scanf("%d",&a[i]);
-	}
-	for(i=0;i<n;i++){
-		for(j=0;j<n-i-1;j++){
-			if(a[j]>a[j+1]){
-				temp = a[j];
-				a[j] = a[j+1];
-				a[j+1] = temp;
-			}
-		}
-	}
-	printf("\nThe sorted array are: ");
-	for(i=0;i<n;i++){
-		printf("\n%d",a[i]);
-	}
-	return 0;
-}
+ORG 0000h
+	AJMP MAIN;ajmp absolute jump 
+	ORG 0013H
+	CLR P0.0;Turn ON LED
+HERE:	JNB P3.3,HERE;CHECKINH THE STATUS OF SWITCH
+	SETB P0.0;TURN OFF LED
+	RETI;used to end an interupt service routine
+	ORG 30h
+MAIN:	SETB P0.3
+	CLR P0.0;P0.0 OUTPUT
+	SETB P0.1
+	SETB TCON.2;TCON means timer control
+	MOV IE,#10000100b;INT 1 ENABLE
+WAIT:	SJMP WAIT
+	END
