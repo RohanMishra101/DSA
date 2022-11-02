@@ -1,15 +1,37 @@
-ORG 0000h
-	AJMP MAIN;ajmp absolute jump 
-	ORG 0013H
-	CLR P0.0;Turn ON LED
-HERE:	JNB P3.3,HERE;CHECKINH THE STATUS OF SWITCH
-	SETB P0.0;TURN OFF LED
-	RETI;used to end an interupt service routine
-	ORG 30h
-MAIN:	SETB P0.3
-	CLR P0.0;P0.0 OUTPUT
-	SETB P0.1
-	SETB TCON.2;TCON means timer control
-	MOV IE,#10000100b;INT 1 ENABLE
-WAIT:	SJMP WAIT
-	END
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+int main()
+{
+    float x[20],y[20],f,s,d,h,p;
+    int j,i,k,n;
+    printf("enter the number of the elements :");
+    scanf("%d",&n);
+    printf("enter the value of x:\n");
+    for(i=1;i<=n;i++)
+    {
+    	scanf("%f",&x[i]);
+    }
+	printf("enter the value of y:\n");
+    for(i=1;i<=n;i++)
+    {
+    	scanf("%f",&y[i]);
+    }
+    h=x[2]-x[1];
+    printf("enter the searching point f:");
+	scanf("%f",&f);
+	s=(f-x[n])/h;
+	d=y[n];
+	p=1;
+	for(i=n,k=1;i>=1,k<n;i--,k++)
+	{
+        for(j=n;j>=1;j--)
+        {
+        	y[j]=y[j]-y[j-1];
+        }
+        p=p*(s+k-1)/k;
+        d=d+p*y[n];
+	}
+	printf("for f=%f ,ans is=%f",f,d);
+	return 0;
+}
